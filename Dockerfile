@@ -1,6 +1,8 @@
 FROM ubuntu:trusty
 MAINTAINER Julien Bréhin <julbrehin@protonmail.com>
 
+WORKDIR /bbbxc
+
 RUN apt-get update\
   && apt-get install -y \
       automake      \
@@ -9,3 +11,7 @@ RUN apt-get update\
       libstdc++6-armhf-cross \
       g++-arm-linux-gnueabihf\
     ;
+
+ENTRYPOINT ["bash","/bbbxc/entrypoint.sh"]
+
+COPY entrypoint.sh /bbbxc

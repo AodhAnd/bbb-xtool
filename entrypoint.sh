@@ -31,7 +31,9 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
 
     # Run the command as the specified user/group.
     echo "Executing the desired command ($@)..."
-    # exec chpst -u :$BUILDER_UID:$BUILDER_GID "$@"
+    pwd
+    cd src/
+    exec chpst -u :$BUILDER_UID:$BUILDER_GID "$@"
     echo "Success !"
 else
     # Just run the command as root.

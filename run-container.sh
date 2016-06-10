@@ -21,7 +21,7 @@ TAG=latest
 COMMAND=make
 
 # Source code folder on the host machine
-SRC_FOLDER='/home/Aand/Documents/scolaire/aau/s6/project/main/global/'
+SRC_FOLDER=''
 # Source code folder destination on the guest
 DEST_FOLDER='/build/'
 
@@ -189,4 +189,4 @@ docker run -i \
   -v $SRC_FOLDER:$DEST_FOLDER:z \
   $USER_IDS \
   $CONTAINER \
-  
+  make

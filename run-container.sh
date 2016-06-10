@@ -1,6 +1,6 @@
 # run-container.sh -- Docker image runner
 # This shell script verifies that the right docker image has been 
-# correctly built. It then asks for the code source location
+# correctly built. It then asks for the source code location
 # on the host machine, if it hasn't been specified as an argument.
 # It finally runs the container with the specified command, if any.
 # 
@@ -49,15 +49,15 @@ fi
 
 # #------------------------ Command handlers -----------------------#
 # command:update-image() {
-#     docker pull $CONTAINER
+#     docker pull $IMAGE
 # }
 
 # command:update-script() {
-#     if cmp -s <( docker run $CONTAINER ) $0; then
+#     if cmp -s <( docker run $IMAGE ) $0; then
 #         echo $0 is up to date
 #     else
 #         echo -n Updating $0 '... '
-#         docker run $CONTAINER > $0 && echo ok
+#         docker run $IMAGE > $0 && echo ok
 #     fi
 # }
 
@@ -67,15 +67,15 @@ fi
 # }
 
 # help:update-image() {
-#     echo Pulls the latest $CONTAINER .
+#     echo Pulls the latest $IMAGE .
 # }
 
 # help:update-image() {
-#     echo Update $0 from $CONTAINER .
+#     echo Update $0 from $IMAGE .
 # }
 
 # help:update() {
-#     echo Pull the latest $CONTAINER, and then update $0 from that.
+#     echo Pull the latest $IMAGE, and then update $0 from that.
 # }
 
 # command:help() {
@@ -130,7 +130,7 @@ fi
 
 # #------------- Verify that the image is existant ----------------#
 # if [[ "$(docker images -q ${CONTAINER}:${TAG} 2> /dev/null)" == "" ]]; then
-#   echo $CONTAINER doesn\'t seem to be part of your docker images or is not up-to-date
+#   echo $IMAGE doesn\'t seem to be part of your docker images or is not up-to-date
 #   command:help
 #   exit
 # else
@@ -188,5 +188,5 @@ fi
 docker run -i \
   -v $SRC_FOLDER:$DEST_FOLDER:z \
   $USER_IDS \
-  $CONTAINER \
+  $IMAGE \
   
